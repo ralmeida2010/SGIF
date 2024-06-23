@@ -1,2 +1,2 @@
 # SGIF
-National Database of Forest Fires 1880-until now
+National Database of Forest Fires 1980-until now
