@@ -141,6 +141,11 @@ fogos<- bind_rows(Data1980_2000, Data2001_now)
 fogoseliminados<- bind_rows(Data1980_2000eliminados, Data2001_noweliminados)
 
 
+fogos <- fogos %>%
+        mutate(Distrito = str_replace(Distrito, "Viana Do Castelo", "Viana do Castelo"))
+
+
+
 # Generate descriptive statistics for both datasets
 tt <- descriptives(fogos, desc = "rows", vars = colnames(fogos), n=TRUE, missing=TRUE, mean=TRUE, median=TRUE, sd=TRUE, variance=TRUE, min=TRUE, max=TRUE, se=TRUE, skew=TRUE, kurt=TRUE, sw=TRUE)
 fogosDescriptives <- as.data.frame(tt$descriptivesT)

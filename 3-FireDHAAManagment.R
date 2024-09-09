@@ -236,8 +236,12 @@ fogosClosed <- fogos %>%
   inner_join(rd_junta, by = "Codigo") %>%
   mutate(DHFimEstimado = DHFimEstimado.y) %>%  # Replace DHFimEstimado with values from rd_junta
   #select(-DHFimEstimado.x, -DHFimEstimado.y) %>%   # Remove the old DHFimEstimado columns
-  rename(TipoIncendio = Tipo.x) %>%  # Rename Tipo.y to TipoEstimado
-  mutate(HaHoraEstimado = AreaTotalEstimado / as.numeric(difftime(DHFimEstimado, DHInicio, units = "hours")))  # Calculate HaHoraEstimado
+  rename(TipoIncendio = Tipo.x, TipoEstimativa= Tipo.y) %>%  # Rename Tipo.y to TipoEstimado
+  mutate(HaHoraEstimado = AreaTotalEstimado / as.numeric(difftime(DHFimEstimado, DHInicio, units = "hours")))%>%   # Calculate HaHoraEstimado
+  mutate(Distrito = str_replace(Distrito, "Viana Do Castelo", "Viana do Castelo"))%>%
+  mutate(across(where(is.numeric), ~ifelse(is.infinite(.), 0.000000001, .)))
+  
+
 
 
 rm(Data1980_2000, Data1980_2000eliminados, Data2001_noweliminados, Data1980_2000eliminados)
