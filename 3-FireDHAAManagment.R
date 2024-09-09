@@ -5,6 +5,7 @@ library(ggplot2)
 library(lubridate)
 
 
+
 # Subset and mutate the data
 rdbase <- subset(fogos, ClassificacaoRegisto=="Closed" & AreaTotal > 0 & DHFim > DHInicio & !is.na(DHFim), 
              select = c(Codigo, INE, DHInicio, DHFim, AreaTotal))
